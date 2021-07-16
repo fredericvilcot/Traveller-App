@@ -1,0 +1,24 @@
+query QCountries($limit: Int, $skip: Int, $where: CountryWhere) {
+    countries(limit: $limit, skip: $skip, where: $where) {
+        id
+        name
+        population
+        location {
+            lat
+            long
+        }
+        callingCodes
+        currencies {
+            id
+            name
+            unitSymbols
+            isoCode
+        }
+        languages {
+            id
+            name
+            alpha2Code
+        }
+        vatRate
+    }
+}
