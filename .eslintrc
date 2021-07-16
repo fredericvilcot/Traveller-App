@@ -1,0 +1,7 @@
+{
+    "extends": "@ubleam",
+    "rules": {
+        "@typescript-eslint/member-ordering": 2
+    },
+    "ignorePatterns": ["ieInterceptor.js", "env.js", "webpack.config.ts", "webpack.prod.ts"]
+}
