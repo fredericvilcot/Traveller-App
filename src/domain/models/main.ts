@@ -10,7 +10,7 @@ export type TCurrency = {
     isoCode: string
 }
 
-export type Tlanguage = {
+export type TLanguage = {
     alpha2Code: string
     id: string
     name: string

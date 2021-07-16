@@ -1,4 +1,4 @@
-import type { TLocation, Tlanguage, TCurrency } from '../main'
+import type { TLocation, TLanguage, TCurrency } from '../main'
 import type { DeepReadonly } from 'superTypes'
 
 export type TCountry = {
@@ -8,6 +8,6 @@ export type TCountry = {
     population: number
     phoneCodes: Readonly<string[]>
     currencies: DeepReadonly<TCurrency[]>
-    languages: DeepReadonly<Tlanguage[]>
+    languages: DeepReadonly<TLanguage[]>
     vatRate?: number | null
 }
