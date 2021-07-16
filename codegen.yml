@@ -1,0 +1,10 @@
+overwrite: true
+generates:
+    ./build/gen-src/app/queries/countryQueries.ts:
+        schema: 'https://api.everbase.co/graphql?apikey=b3fa2b28-6356-4a88-87a4-01c885b38373'
+        documents:
+            - 'src/adapters/secondary/country/countryQueries/*.graphql'
+        plugins:
+            - typescript
+            - typescript-operations
+            - fragment-matcher
