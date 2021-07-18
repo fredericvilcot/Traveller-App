@@ -2,13 +2,14 @@ import React from 'react'
 import { render } from 'react-dom'
 
 import { StoreContext } from 'adapters/primary/contexts/index'
+import { HomeView } from 'adapters/primary/views/home/homeView'
 import stores from 'domain/stores/index'
 
 const Main: React.FC = () => {
     return (
         <React.StrictMode>
             <StoreContext.Provider value={stores}>
-                <div>Loft-Traveler</div>
+                <HomeView />
             </StoreContext.Provider>
         </React.StrictMode>
     )
