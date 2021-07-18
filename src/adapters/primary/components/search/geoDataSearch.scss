@@ -19,11 +19,11 @@
 
 .loft-geodata-search-main {
     @include flexColumn;
-    padding: 2% 20%;
+    padding: 2% 10%;
     .loft-geodata-search-wrapper {
         @include flexColumn;
         background-color: $white;
-        padding: 25px 100px;
+        padding: 25px 120px;
         box-shadow: #0000001a 0px 4px 32px;
         border-radius: 16px;
 

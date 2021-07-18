@@ -1,0 +1,12 @@
+@import 'variables.scss';
+
+.loft-map-main {
+    height: 100%;
+    width: 70%;
+    .loft-map-container {
+        height: 100%;
+        width: 100%;
+        box-shadow: #0000001a 0px 4px 32px;
+        border-radius: 16px;
+    }
+}

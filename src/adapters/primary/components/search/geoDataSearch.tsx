@@ -3,7 +3,6 @@ import React, { useCallback } from 'react'
 
 import { useStores } from 'adapters/primary/hooks/index'
 import type { GeoDataStore } from 'domain/stores/geoDataStore'
-// import type { DeepReadonly } from 'superTypes'
 
 import Button from '@material-ui/core/Button'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -96,10 +95,12 @@ export const GeoDataSearch: React.FC = observer(() => {
     )
 
     const handleSearch = useCallback((): void => {
-        const filter = { where: { name: { eq: localState.inputValue } } }
-        localState.selectValue === GeoDataType.COUNTRY
-            ? geoDataStore.retrieveCountries(filter)
-            : geoDataStore.retrieveCities(filter)
+        if (localState.inputValue) {
+            const filter = { where: { name: { eq: localState.inputValue } } }
+            localState.selectValue === GeoDataType.COUNTRY
+                ? geoDataStore.retrieveCountries(filter)
+                : geoDataStore.retrieveCities(filter)
+        }
     }, [geoDataStore, localState])
 
     return (

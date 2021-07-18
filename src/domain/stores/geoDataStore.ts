@@ -1,6 +1,7 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 
 import type { TCountry } from 'domain/models/country/countryModel'
+import type { TLocation } from 'domain/models/main'
 import type { TCity } from 'domain/models/city/cityModel'
 import type ICityPort from 'domain/ports/city/cityPort'
 import type ICountryPort from 'domain/ports/country/countryPort'
@@ -45,6 +46,14 @@ export class GeoDataStore {
     @computed
     public get hasResult(): boolean {
         return !!this.cities?.length || !!this.countries?.length
+    }
+
+    @computed
+    public get cityLatAndLon(): TLocation | undefined {
+        if (!this.cities?.length || !this.cities[0]?.location) {
+            return
+        }
+        return this.cities[0].location
     }
 
     @action
