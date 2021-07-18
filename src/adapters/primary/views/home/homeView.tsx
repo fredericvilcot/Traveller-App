@@ -1,26 +1,25 @@
 import { observer } from 'mobx-react'
-import React, { useEffect } from 'react'
-import { useStores } from 'adapters/primary/hooks/index'
-import type { GeoDataStore } from 'domain/stores/geoDataStore'
-
-type THomeViewStore = {
-    geoDataStore: GeoDataStore
-}
+import React, { useCallback, useRef } from 'react'
+import { GeoDataSearch } from 'adapters/primary/components/search/geoDataSearch'
+import { LoftCarousel } from 'adapters/primary/components/carousel/loftCarousel'
 
 export const HomeView: React.FC = observer(() => {
-    const { geoDataStore }: THomeViewStore = useStores()
+    const contentRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        geoDataStore.retrieveCountries()
-        geoDataStore.retrieveCities()
-    }, [geoDataStore])
+    const handleCarouselButtonClick = useCallback((): void => {
+        contentRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+        })
+    }, [])
 
     return (
-        <>
-            <div>Countries : </div>
-            <div>{JSON.stringify(geoDataStore.countries)}</div>
-            <div>Cities : </div>
-            <div>{JSON.stringify(geoDataStore.countries)}</div>
-        </>
+        <React.Fragment>
+            <LoftCarousel onCarouselButtonClick={handleCarouselButtonClick} />
+            <div ref={contentRef} style={{ height: '100%' }}>
+                <GeoDataSearch />
+            </div>
+        </React.Fragment>
     )
 })
