@@ -3,8 +3,8 @@ import { loader } from 'graphql.macro'
 import { action, makeObservable, observable } from 'mobx'
 
 import ApiGateway from 'adapters/secondary/ApiGateway'
-import type { IStatus } from 'domain/ports/city/citiesPort'
-import type ICityPort from 'domain/ports/city/citiesPort'
+import type { IStatus } from 'domain/ports/city/cityPort'
+import type ICityPort from 'domain/ports/city/cityPort'
 import type { TCity } from 'domain/models/city/cityModel'
 import type { DeepReadonly } from 'superTypes'
 import type {
