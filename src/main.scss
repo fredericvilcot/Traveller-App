@@ -1,0 +1,53 @@
+@import 'variables.scss';
+
+html,
+body,
+input,
+#root {
+    overflow: auto;
+    margin: 0px;
+    font-family: $font-family-loft;
+    height: 100%;
+}
+
+body {
+    line-height: 1;
+    min-width: 800px;
+    background-color: $light-grey;
+}
+
+/*
+* Buttons
+*/
+
+#root {
+    .loft-action-button-root {
+        border-radius: 25px;
+        padding: 8px 40px;
+        background-color: $light-pacific-blue;
+
+        &.smaller {
+            padding: 4px 25px;
+
+            > span {
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+        }
+
+        &:hover {
+            background-color: $dark-pacific-blue;
+        }
+
+        > span {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .loft-action-button-start-icon {
+            > svg {
+                font-size: 24px;
+            }
+        }
+    }
+}
