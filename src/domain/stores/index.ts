@@ -1,16 +1,16 @@
 import { configure } from 'mobx'
-import { CountryStore } from './country/countryStore'
+import { GeoDataStore } from './geoDataStore'
 
 configure({ enforceActions: 'observed' })
 
 export interface IStores {
-    countryStore: CountryStore
+    geoDataStore: GeoDataStore
 }
 
-export const countryStore: CountryStore = new CountryStore()
+export const geoDataStore: GeoDataStore = new GeoDataStore()
 
 const stores: IStores = {
-    countryStore
+    geoDataStore
 }
 
 export default stores
