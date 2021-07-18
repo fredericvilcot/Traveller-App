@@ -1,8 +1,3 @@
-import type { TCountry } from '../../models/country/countryModel'
+import type { TCountry } from 'domain/models/country/countryModel'
 
-export type TCountryFilter<T> = Readonly<{
-    limit?: number
-    skip?: number
-    where?: T
-}>
-export type TGetCountries<T> = (filter?: TCountryFilter<T>) => Promise<TCountry[]>
+export type TGetCountries<T> = (filter?: T) => Promise<TCountry[]>

@@ -1,16 +1,23 @@
 import type { ApolloQueryResult } from '@apollo/client'
 import { loader } from 'graphql.macro'
 import { Client } from 'adapters/secondary/ApiGateway'
-import type { TGetCountries, TCountryFilter } from 'domain/ports/country/countryPort'
+import type { TGetCountries } from 'domain/ports/country/countriesPort'
+import type { TCity } from 'domain/models/city/cityModel'
 import type { TCountry } from 'domain/models/country/countryModel'
 import type { DeepReadonly } from 'superTypes'
 import type {
     QCountriesQuery,
     QCountriesQueryVariables,
     CountryWhere
-} from '../../../../build/gen-src/app/queries/countryQueries'
+} from '../../../../build/gen-src/app/queries/geoDataQueries'
 
-const COUNTRIES_QUERY = loader('./countryQueries/countries.graphql')
+const COUNTRIES_QUERY = loader('../geoDataQueries/countries.graphql')
+
+type TCountryFilter = Readonly<{
+    limit?: number
+    skip?: number
+    where?: CountryWhere
+}>
 
 const mapCountries = (countriesFromApi: DeepReadonly<QCountriesQuery['countries']>): TCountry[] =>
     // eslint-disable-next-line @typescript-eslint/typedef
@@ -22,11 +29,12 @@ const mapCountries = (countriesFromApi: DeepReadonly<QCountriesQuery['countries'
         phoneCodes: country.callingCodes,
         currencies: country.currencies,
         languages: country.languages,
-        vatRate: country.vatRate
+        vatRate: country.vatRate,
+        capital: country.capital as unknown as TCity
     }))
 
-export const getCountries: TGetCountries<CountryWhere> = async (
-    filter?: TCountryFilter<CountryWhere>
+export const getCountries: TGetCountries<TCountryFilter> = async (
+    filter?: TCountryFilter
 ): Promise<TCountry[]> => {
     const { data }: ApolloQueryResult<QCountriesQuery> = await Client.query<
         QCountriesQuery,
