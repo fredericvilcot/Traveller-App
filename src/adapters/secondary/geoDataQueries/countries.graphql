@@ -1,0 +1,7 @@
+#import './countryFragment.graphql'
+
+query QCountries($limit: Int, $skip: Int, $where: CountryWhere) {
+    countries(limit: $limit, skip: $skip, where: $where) {
+        ...CountryDef
+    }
+}

@@ -1,0 +1,16 @@
+#import './countryFragment.graphql'
+
+query QCities($limit: Int, $skip: Int, $where: CityWhere) {
+    cities(limit: $limit, skip: $skip, where: $where) {
+        id
+        name
+        population
+        location {
+            lat
+            long
+        }
+        country {
+            ...CountryDef
+        }
+    }
+}
