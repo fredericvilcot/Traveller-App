@@ -1,0 +1,23 @@
+@import 'variables.scss';
+
+.loft-carousel-main {
+    width: 100%;
+    height: 100%;
+
+    .carousel-root {
+        height: 100%;
+
+        .carousel {
+            height: 100%;
+        }
+
+        .loft-action-button {
+            position: absolute;
+            bottom: 50%;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
