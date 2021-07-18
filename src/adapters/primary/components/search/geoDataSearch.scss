@@ -1,0 +1,87 @@
+@import 'variables.scss';
+
+@mixin flexRaw {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin middleSpan {
+    color: $dark-blue-marine;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.loft-geodata-search-main {
+    @include flexColumn;
+    padding: 2% 20%;
+    .loft-geodata-search-wrapper {
+        @include flexColumn;
+        background-color: $white;
+        padding: 25px 100px;
+        box-shadow: #0000001a 0px 4px 32px;
+        border-radius: 16px;
+
+        > span {
+            color: $dark-blue-marine;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .loft-geodata-search-content {
+            @include flexRaw;
+            margin-top: 25px;
+
+            .loft-textfield-root {
+                min-width: 400px;
+                &.smaller {
+                    min-width: 200px;
+                }
+                > label {
+                    font-size: 14px;
+                    text-transform: capitalize;
+                    &.Mui-focused:not(.Mui-error) {
+                        color: $light-pacific-blue;
+                    }
+                }
+            }
+
+            .loft-geodata-search-input-main {
+                @include flexRaw;
+                margin-left: 18px;
+
+                .loft-geodata-search-input-action-button {
+                    margin-left: 18px;
+                }
+            }
+        }
+
+        .loft-geodata-search-loader {
+            @include flexColumn;
+            > div {
+                width: 30px !important;
+                height: 30px !important;
+                color: $light-pacific-blue;
+                margin-top: 25px;
+                margin-bottom: 10px;
+            }
+            > span {
+                @include middleSpan;
+            }
+        }
+
+        .loft-geodata-search-error-container {
+            color: $light-pacific-blue;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            > span {
+                @include middleSpan;
+            }
+        }
+    }
+}
