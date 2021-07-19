@@ -29,6 +29,7 @@
     "paths": {
         "adapters/*": ["src/adapters/*"],
         "domain/*": ["src/domain/*"],
+        "generated/*": ["src/generated/*"],
         "superTypes": ["src/superTypes.ts"]
     }
 }

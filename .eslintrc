@@ -1,6 +1,0 @@
-{
-    "extends": "@ubleam",
-    "rules": {
-        "@typescript-eslint/member-ordering": 2
-    }
-}
