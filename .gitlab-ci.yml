@@ -10,9 +10,9 @@ build:
         - npm install
         - npm run build
         - echo "Build successfully!"
-        artifacts:
-          expire_in: 1 hour
-          paths:
+    artifacts:
+        expire_in: 1 hour
+        paths:
             - build
             - node_modules/
 
