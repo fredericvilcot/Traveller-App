@@ -10,17 +10,15 @@ import type { DeepReadonly } from 'superTypes'
 export class GeoDataStore {
     @observable private allCountries: TCountry[] | null = null
     @observable private allCities: TCity[] | null = null
-    @observable private selected: TCity | TCountry | null = null
-    protected realCityGateway: ICityPort
-    protected realCountryGateway: ICountryPort
+    @observable private currentSelectedCity: TCity | null = null
+    @observable private currentSelectedCountry: TCountry | null = null
+    protected cityGateway: ICityPort
+    protected countryGateway: ICountryPort
 
-    constructor(
-        realCityGateway: DeepReadonly<ICityPort>,
-        realCountryGateway: DeepReadonly<ICountryPort>
-    ) {
+    constructor(cityGateway: DeepReadonly<ICityPort>, countryGateway: DeepReadonly<ICountryPort>) {
         makeObservable(this)
-        this.realCityGateway = realCityGateway
-        this.realCountryGateway = realCountryGateway
+        this.cityGateway = cityGateway
+        this.countryGateway = countryGateway
     }
 
     public get countries(): TCountry[] | null {
@@ -31,16 +29,20 @@ export class GeoDataStore {
         return this.allCities
     }
 
-    public get selectedGeoData(): TCountry | TCity | null {
-        return this.selected
+    public get selectedCity(): TCity | null {
+        return this.currentSelectedCity
+    }
+
+    public get selectedCountry(): TCountry | null {
+        return this.currentSelectedCountry
     }
 
     public get hasGatewayLoadingStatus(): boolean {
-        return this.realCityGateway.status.loading || this.realCountryGateway.status.loading
+        return this.cityGateway.status.loading || this.countryGateway.status.loading
     }
 
     public get hasGatewaySuccessStatus(): boolean {
-        return this.realCityGateway.status.success || this.realCountryGateway.status.success
+        return this.cityGateway.status.success || this.countryGateway.status.success
     }
 
     @computed
@@ -49,25 +51,39 @@ export class GeoDataStore {
     }
 
     @computed
-    public get cityLatAndLon(): TLocation | undefined {
-        if (!this.cities?.length || !this.cities[0]?.location) {
+    public get selectedCityLatAndLon(): TLocation | undefined {
+        if (!this.currentSelectedCity || !this.currentSelectedCity.location) {
             return
         }
-        return this.cities[0].location
+        return this.currentSelectedCity.location
+    }
+
+    @computed
+    public get selectedCountryLatAndLon(): TLocation | undefined {
+        if (!this.currentSelectedCountry || !this.currentSelectedCountry.location) {
+            return
+        }
+        return this.currentSelectedCountry.location
     }
 
     @action
-    public setSelectedGeoData = (data: TCountry | TCity | null): void => {
-        this.selected = data
+    public setSelectedCityByID = (id: string): void => {
+        this.currentSelectedCity =
+            this.allCities?.find((city: DeepReadonly<TCity>) => city.id === id) ?? null
     }
 
+    @action
+    public setSelectedCountryByID = (id: string): void => {
+        this.currentSelectedCountry =
+            this.allCountries?.find((country: DeepReadonly<TCountry>) => country.id === id) ?? null
+    }
     @action
     public retrieveCountries = async (filter?: unknown): Promise<void> => {
-        this.allCountries = await this.realCountryGateway.getCountries(filter)
+        this.allCountries = await this.countryGateway.getCountries(filter)
     }
 
     @action
     public retrieveCities = async (filter?: unknown): Promise<void> => {
-        this.allCities = await this.realCityGateway.getCities(filter)
+        this.allCities = await this.cityGateway.getCities(filter)
     }
 }
