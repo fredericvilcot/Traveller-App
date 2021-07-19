@@ -6,22 +6,17 @@ fragment CountryDef on Country {
         lat
         long
     }
-    callingCodes
     currencies {
         id
         name
-        unitSymbols
-        isoCode
     }
     languages {
         id
         name
-        alpha2Code
     }
     capital {
         id
         name
         population
     }
-    vatRate
 }

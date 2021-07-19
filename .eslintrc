@@ -1,0 +1,7 @@
+{
+    "extends": "@ubleam",
+    "rules": {
+        "@typescript-eslint/member-ordering": 2
+    },
+    "ignorePatterns": "*.spec.ts"
+}
