@@ -38,7 +38,7 @@ export const LoftCarousel: React.FC<TLoftCarouselProps> = ({
     return (
         <div className="loft-carousel-main">
             <Carousel
-                autoPlay={false}
+                autoPlay
                 infiniteLoop
                 interval={4000}
                 showStatus={false}
