@@ -9,5 +9,5 @@ export type TCountry = {
     population: number
     currencies: DeepReadonly<TCurrency[]>
     languages: DeepReadonly<TLanguage[]>
-    capital: DeepReadonly<TCity>
+    capital?: DeepReadonly<TCity> | null
 }

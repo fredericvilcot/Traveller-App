@@ -40,7 +40,7 @@ export const LoftCard: React.FC = observer(() => {
                     {geoDataStore.selectedCountry && (
                         <React.Fragment>
                             <span>{`Capital : ${
-                                geoDataStore.selectedCountry.capital.name || ''
+                                geoDataStore.selectedCountry.capital?.name ?? ''
                             }`}</span>
                             <span>Currencies :</span>
                             {geoDataStore.selectedCountry.currencies.map(
