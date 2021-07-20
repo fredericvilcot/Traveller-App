@@ -8,19 +8,8 @@
 
     .loft-home-view-map-wrapper {
         height: 100%;
-        width: 100%;
+        width: calc(100% - 60px);
         display: flex;
-        padding-bottom: 30px;
-        margin-left: 60px;
-
-        .loft-home-empty {
-            width: 30%;
-            background-color: $white;
-            padding-bottom: 30px;
-            box-shadow: #0000001a 0px 4px 32px;
-            border-radius: 16px;
-            margin-right: 60px;
-            margin-left: 30px;
-        }
+        padding: 0 30px 30px 30px;
     }
 }

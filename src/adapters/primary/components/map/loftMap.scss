@@ -2,7 +2,10 @@
 
 .loft-map-main {
     height: 100%;
-    width: 70%;
+    width: 80%;
+    &.full-width {
+        width: 100%;
+    }
     .loft-map-container {
         height: 100%;
         width: 100%;

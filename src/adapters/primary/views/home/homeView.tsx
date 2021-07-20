@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react'
 import React, { useCallback, useRef } from 'react'
 import { GeoDataSearch } from 'adapters/primary/components/search/geoDataSearch'
+import { LoftCard } from 'adapters/primary/components/card/loftCard'
 import { LoftCarousel } from 'adapters/primary/components/carousel/loftCarousel'
 import { LoftMap } from 'adapters/primary/components/map/loftMap'
 
@@ -24,7 +25,7 @@ export const HomeView: React.FC = observer(() => {
                 <GeoDataSearch />
                 <div className="loft-home-view-map-wrapper">
                     <LoftMap />
-                    <div className="loft-home-empty">Salut</div>
+                    <LoftCard />
                 </div>
             </div>
         </React.Fragment>

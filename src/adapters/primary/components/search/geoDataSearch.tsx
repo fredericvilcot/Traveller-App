@@ -172,7 +172,7 @@ export const GeoDataSearch: React.FC = observer(() => {
                     !geoDataStore.selectedCity && (
                         <div className="loft-geodata-search-multiple-result-container">
                             <span className="loft-geodata-search-multiple-result-title">
-                                We found multiple cities for your search, please select one:
+                                We found multiple cities for your search:
                             </span>
                             {geoDataStore.cities?.map((city: DeepReadonly<TCity>) => (
                                 <div

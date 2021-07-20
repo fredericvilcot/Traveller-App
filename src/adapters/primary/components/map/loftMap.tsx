@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import type { LatLngExpression, Map } from 'leaflet'
 import { reaction } from 'mobx'
 import { observer, useLocalStore } from 'mobx-react'
@@ -64,7 +65,11 @@ export const LoftMap: React.FC = observer(() => {
     })
 
     return (
-        <div className="loft-map-main">
+        <div
+            className={classNames('loft-map-main', {
+                'full-width': !geoDataStore.selectedCity && !geoDataStore.selectedCountry
+            })}
+        >
             <MapContainer
                 center={[51.505, -0.09]}
                 className="loft-map-container"

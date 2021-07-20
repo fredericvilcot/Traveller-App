@@ -38,27 +38,27 @@ export const LoftCarousel: React.FC<TLoftCarouselProps> = ({
     return (
         <div className="loft-carousel-main">
             <Carousel
-                autoPlay
+                autoPlay={false}
                 infiniteLoop
-                interval={8000}
+                interval={4000}
                 showStatus={false}
                 showThumbs={false}
                 transitionTime={800}
             >
                 <div>
-                    <img src={island} />
+                    <img alt="island landscape" src={island} />
                     {button}
                 </div>
                 <div>
-                    <img src={city} />
+                    <img alt="city landscape" src={city} />
                     {button}
                 </div>
                 <div>
-                    <img src={mountain} />
+                    <img alt="mountain landscape" src={mountain} />
                     {button}
                 </div>
                 <div>
-                    <img src={autumn} />
+                    <img alt="autumn landscape" src={autumn} />
                     {button}
                 </div>
             </Carousel>

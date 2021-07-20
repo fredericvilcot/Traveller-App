@@ -23,7 +23,7 @@
     .loft-geodata-search-wrapper {
         @include flexColumn;
         background-color: $white;
-        padding: 25px 120px;
+        padding: 30px 120px;
         box-shadow: #0000001a 0px 4px 32px;
         border-radius: 16px;
 
@@ -74,7 +74,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #253050;
+            color: $dark-blue-marine;
+            margin-top: 10px;
 
             .loft-geodata-search-multiple-result-title {
                 margin: 10px 0;
@@ -83,11 +84,11 @@
                 display: inline-flex;
                 align-items: flex-end;
                 padding: 2px;
+                color: $light-pacific-blue;
 
                 &:hover {
                     text-decoration: underline;
                     cursor: pointer;
-                    color: blue;
                 }
 
                 > svg {
