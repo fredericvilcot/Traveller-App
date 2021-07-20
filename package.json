@@ -39,7 +39,7 @@
     },
     "scripts": {
         "start": "npm run apollo:code-gen && react-scripts start",
-        "build": "react-scripts build",
+        "build": "npm run apollo:code-gen && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "apollo:code-gen": "graphql-codegen --config codegen.yml"
