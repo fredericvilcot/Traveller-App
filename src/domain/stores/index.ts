@@ -3,7 +3,7 @@ import RealCityGateway from 'adapters/secondary/city/RealCityGateway'
 import RealContryGateway from 'adapters/secondary/country/RealCountryGateway'
 import { GeoDataStore } from 'domain/stores/geoDataStore'
 
-configure({ enforceActions: 'observed' })
+configure({ enforceActions: 'always' })
 
 export interface IStores {
     geoDataStore: GeoDataStore

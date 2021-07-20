@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from 'mobx'
+import { makeObservable, observable, runInAction } from 'mobx'
 
 import type { TCountry } from 'domain/models/country/countryModel'
 import type { TLocation } from 'domain/models/main'
@@ -45,17 +45,14 @@ export class GeoDataStore {
         return this.cityGateway.status.success || this.countryGateway.status.success
     }
 
-    @computed
     public get hasResult(): boolean {
         return !!this.cities?.length || !!this.countries?.length
     }
 
-    @computed
     public get hasMultipleCitiesResult(): boolean {
         return !!this.allCities && this.allCities.length > 1
     }
 
-    @computed
     public get selectedCityLatAndLon(): TLocation | undefined {
         if (!this.currentSelectedCity || !this.currentSelectedCity.location) {
             return
@@ -63,7 +60,6 @@ export class GeoDataStore {
         return this.currentSelectedCity.location
     }
 
-    @computed
     public get selectedCountryLatAndLon(): TLocation | undefined {
         if (!this.currentSelectedCountry || !this.currentSelectedCountry.location) {
             return
@@ -71,41 +67,49 @@ export class GeoDataStore {
         return this.currentSelectedCountry.location
     }
 
-    @action
     public setSelectedCityByID = (id: string): void => {
-        this.currentSelectedCity =
-            this.allCities?.find((city: DeepReadonly<TCity>) => city.id === id) ?? null
+        runInAction(() => {
+            this.currentSelectedCity =
+                this.allCities?.find((city: DeepReadonly<TCity>) => city.id === id) ?? null
+        })
     }
 
-    @action
     public setSelectedCountryByID = (id: string): void => {
-        this.currentSelectedCountry =
-            this.allCountries?.find((country: DeepReadonly<TCountry>) => country.id === id) ?? null
+        runInAction(() => {
+            this.currentSelectedCountry =
+                this.allCountries?.find((country: DeepReadonly<TCountry>) => country.id === id) ??
+                null
+        })
     }
 
-    @action
     public retrieveCountries = async (filter?: unknown): Promise<void> => {
         this.resetGeoData()
-        this.allCountries = await this.countryGateway.getCountries(filter)
-        if (this.allCountries?.length) {
-            this.currentSelectedCountry = this.allCountries[0]
-        }
+        const countries = await this.countryGateway.getCountries(filter)
+        runInAction(() => {
+            this.allCountries = countries
+            if (this.allCountries?.length) {
+                this.currentSelectedCountry = this.allCountries[0]
+            }
+        })
     }
 
-    @action
     public retrieveCities = async (filter?: unknown): Promise<void> => {
         this.resetGeoData()
-        this.allCities = await this.cityGateway.getCities(filter)
-        if (this.allCities?.length === 1) {
-            this.currentSelectedCity = this.allCities[0]
-        }
+        const cities = await this.cityGateway.getCities(filter)
+        runInAction(() => {
+            this.allCities = cities
+            if (this.allCities?.length === 1) {
+                this.currentSelectedCity = this.allCities[0]
+            }
+        })
     }
 
-    @action
     private resetGeoData = (): void => {
-        this.allCities = null
-        this.allCountries = null
-        this.currentSelectedCity = null
-        this.currentSelectedCountry = null
+        runInAction(() => {
+            this.allCities = null
+            this.allCountries = null
+            this.currentSelectedCity = null
+            this.currentSelectedCountry = null
+        })
     }
 }
