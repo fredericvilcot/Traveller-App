@@ -24,7 +24,6 @@ type TLocalStore = {
 
 export const LoftMap: React.FC = observer(() => {
     const { geoDataStore }: TLoftMapStore = useStores()
-    console.log(geoDataStore)
     const localState = useLocalStore(
         (): TLocalStore => ({
             map: null,
