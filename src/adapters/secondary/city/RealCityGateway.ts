@@ -11,7 +11,7 @@ import type {
     QCitiesQuery,
     QCitiesQueryVariables,
     CityWhere
-} from '../../../../build/gen-src/app/queries/geoDataQueries'
+} from 'generated/queries/geoDataQueries'
 import type { TCountry } from 'domain/models/country/countryModel'
 
 const CITIES_QUERY = loader('../geoDataQueries/cities.graphql')

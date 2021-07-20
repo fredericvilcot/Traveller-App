@@ -2,14 +2,16 @@ import { observer, useLocalStore } from 'mobx-react'
 import React, { useCallback } from 'react'
 
 import { useStores } from 'adapters/primary/hooks/index'
+import type { TCity } from 'domain/models/city/cityModel'
 import type { GeoDataStore } from 'domain/stores/geoDataStore'
+import type { DeepReadonly } from 'superTypes'
 
 import Button from '@material-ui/core/Button'
 import MenuItem from '@material-ui/core/MenuItem'
 import { createStyles, withStyles } from '@material-ui/core/styles'
 import type { Theme } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import LocationCityIcon from '@material-ui/icons/LocationCity'
 
 import './geoDataSearch.scss'
 
@@ -103,6 +105,13 @@ export const GeoDataSearch: React.FC = observer(() => {
         }
     }, [geoDataStore, localState])
 
+    const handleCityElementClick = useCallback(
+        (id: string) => (): void => {
+            geoDataStore.setSelectedCityByID(id)
+        },
+        [geoDataStore]
+    )
+
     return (
         <div className="loft-geodata-search-main">
             <div className="loft-geodata-search-wrapper">
@@ -151,17 +160,30 @@ export const GeoDataSearch: React.FC = observer(() => {
                         </div>
                     </div>
                 </div>
-                {geoDataStore.hasGatewayLoadingStatus && (
-                    <div className="loft-geodata-search-loader">
-                        <CircularProgress className="loft-geodata-search-loader" />
-                        <span>Hang on, your dream is coming! </span>
-                    </div>
-                )}
                 {!geoDataStore.hasGatewayLoadingStatus &&
                     geoDataStore.hasGatewaySuccessStatus &&
                     !geoDataStore.hasResult && (
                         <div className="loft-geodata-search-error-container">
-                            <span>Ooops, there is no result :(</span>
+                            <span>Ooops, there is no result ...</span>
+                        </div>
+                    )}
+                {geoDataStore.hasGatewaySuccessStatus &&
+                    geoDataStore.hasMultipleCitiesResult &&
+                    !geoDataStore.selectedCity && (
+                        <div className="loft-geodata-search-multiple-result-container">
+                            <span className="loft-geodata-search-multiple-result-title">
+                                We found multiple cities for your search, please select one:
+                            </span>
+                            {geoDataStore.cities?.map((city: DeepReadonly<TCity>) => (
+                                <div
+                                    className="loft-geodata-search-multiple-result-element-container"
+                                    key={city.id}
+                                    onClick={handleCityElementClick(city.id)}
+                                >
+                                    <LocationCityIcon />
+                                    <span>{`${city.name} (${city.country?.name})`}</span>
+                                </div>
+                            ))}
                         </div>
                     )}
             </div>

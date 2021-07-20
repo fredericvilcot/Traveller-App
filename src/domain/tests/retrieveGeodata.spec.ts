@@ -41,6 +41,11 @@ describe('Retrieve Geo Data', () => {
         )
     })
 
+    it('should select city immediatly after retrieve if there is only one result', async () => {
+        await geoDataStore.retrieveCities({ where: { name: { eq: 'Toulouse' } } })
+        expect(geoDataStore.selectedCity).toEqual(mockCities[2])
+    })
+
     it('should select a city with given id', async () => {
         await geoDataStore.retrieveCities({ where: { name: { eq: 'Lima' } } })
         geoDataStore.setSelectedCityByID('Q2868')

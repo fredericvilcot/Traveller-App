@@ -61,26 +61,39 @@
             }
         }
 
-        .loft-geodata-search-loader {
-            @include flexColumn;
-            > div {
-                width: 30px !important;
-                height: 30px !important;
-                color: $light-pacific-blue;
-                margin-top: 25px;
-                margin-bottom: 10px;
-            }
-            > span {
-                @include middleSpan;
-            }
-        }
-
         .loft-geodata-search-error-container {
             color: $light-pacific-blue;
             margin-top: 25px;
             margin-bottom: 10px;
             > span {
                 @include middleSpan;
+            }
+        }
+
+        .loft-geodata-search-multiple-result-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #253050;
+
+            .loft-geodata-search-multiple-result-title {
+                margin: 10px 0;
+            }
+            .loft-geodata-search-multiple-result-element-container {
+                display: inline-flex;
+                align-items: flex-end;
+                padding: 2px;
+
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: blue;
+                }
+
+                > svg {
+                    font-size: 18px;
+                    margin-right: 10px;
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 import type { LatLngExpression, Map } from 'leaflet'
 import { reaction } from 'mobx'
 import { observer, useLocalStore } from 'mobx-react'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { useStores } from 'adapters/primary/hooks/index'
@@ -33,13 +33,31 @@ export const LoftMap: React.FC = observer(() => {
         })
     )
 
+    const flyToLatLng = useCallback(
+        (latLng: LatLngExpression): void => {
+            if (localState.map) {
+                localState.map.flyTo(latLng)
+            }
+        },
+        [localState.map]
+    )
+
     useEffect(() => {
         reaction(
-            () => geoDataStore.cityLatAndLon,
+            () => geoDataStore.selectedCityLatAndLon,
             (coordinates?: Readonly<TLocation>) => {
-                if (localState.map && coordinates) {
+                if (coordinates) {
                     const latLng: LatLngExpression = { lat: coordinates.lat, lng: coordinates.long }
-                    localState.map.flyTo(latLng)
+                    flyToLatLng(latLng)
+                }
+            }
+        )
+        reaction(
+            () => geoDataStore.selectedCountryLatAndLon,
+            (coordinates?: Readonly<TLocation>) => {
+                if (coordinates) {
+                    const latLng: LatLngExpression = { lat: coordinates.lat, lng: coordinates.long }
+                    flyToLatLng(latLng)
                 }
             }
         )

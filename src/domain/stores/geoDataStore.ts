@@ -51,6 +51,11 @@ export class GeoDataStore {
     }
 
     @computed
+    public get hasMultipleCitiesResult(): boolean {
+        return !!this.allCities && this.allCities.length > 1
+    }
+
+    @computed
     public get selectedCityLatAndLon(): TLocation | undefined {
         if (!this.currentSelectedCity || !this.currentSelectedCity.location) {
             return
@@ -77,13 +82,30 @@ export class GeoDataStore {
         this.currentSelectedCountry =
             this.allCountries?.find((country: DeepReadonly<TCountry>) => country.id === id) ?? null
     }
+
     @action
     public retrieveCountries = async (filter?: unknown): Promise<void> => {
+        this.resetGeoData()
         this.allCountries = await this.countryGateway.getCountries(filter)
+        if (this.allCountries) {
+            this.currentSelectedCountry = this.allCountries[0]
+        }
     }
 
     @action
     public retrieveCities = async (filter?: unknown): Promise<void> => {
+        this.resetGeoData()
         this.allCities = await this.cityGateway.getCities(filter)
+        if (this.allCities?.length === 1) {
+            this.currentSelectedCity = this.allCities[0]
+        }
+    }
+
+    @action
+    private resetGeoData = (): void => {
+        this.allCities = null
+        this.allCountries = null
+        this.currentSelectedCity = null
+        this.currentSelectedCountry = null
     }
 }

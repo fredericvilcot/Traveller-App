@@ -5,6 +5,7 @@ import { action, makeObservable, observable } from 'mobx'
 import ApiGateway from 'adapters/secondary/ApiGateway'
 import type ICountryPort from 'domain/ports/country/countryPort'
 import type { IStatus } from 'domain/ports/country/countryPort'
+import type { TCurrency, TLanguage, TLocation } from 'domain/models/main'
 import type { TCity } from 'domain/models/city/cityModel'
 import type { TCountry } from 'domain/models/country/countryModel'
 import type { DeepReadonly } from 'superTypes'
@@ -12,7 +13,7 @@ import type {
     QCountriesQuery,
     QCountriesQueryVariables,
     CountryWhere
-} from '../../../../build/gen-src/app/queries/geoDataQueries'
+} from 'generated/queries/geoDataQueries'
 
 const COUNTRIES_QUERY = loader('../geoDataQueries/countries.graphql')
 
@@ -76,12 +77,10 @@ export default class RealCountryGateway extends ApiGateway implements ICountryPo
         countriesFromApi.map(country => ({
             id: country.id,
             name: country.name,
-            location: country.location,
+            location: country.location as TLocation,
             population: country.population,
-            phoneCodes: country.callingCodes,
-            currencies: country.currencies,
-            languages: country.languages,
-            vatRate: country.vatRate,
+            currencies: country.currencies as TCurrency[],
+            languages: country.languages as TLanguage[],
             capital: country.capital as unknown as TCity
         }))
 }

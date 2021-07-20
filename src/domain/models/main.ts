@@ -6,12 +6,9 @@ export type TLocation = {
 export type TCurrency = {
     id: string
     name: string
-    unitSymbols: string[]
-    isoCode: string
 }
 
 export type TLanguage = {
-    alpha2Code: string
     id: string
     name: string
 }

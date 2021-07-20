@@ -70,7 +70,7 @@ export default class InMemoryCityGateway implements ICityPort {
     }
 
     private mapCities = (citiesFromApi: DeepReadonly<TCityPayload[]>): TCity[] =>
-        citiesFromApi.map(city => ({
+        citiesFromApi.map((city: DeepReadonly<TCityPayload>) => ({
             id: city.id,
             name: city.name,
             location: city.location,
