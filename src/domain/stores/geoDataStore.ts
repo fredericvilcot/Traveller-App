@@ -87,7 +87,7 @@ export class GeoDataStore {
     public retrieveCountries = async (filter?: unknown): Promise<void> => {
         this.resetGeoData()
         this.allCountries = await this.countryGateway.getCountries(filter)
-        if (this.allCountries) {
+        if (this.allCountries?.length) {
             this.currentSelectedCountry = this.allCountries[0]
         }
     }
