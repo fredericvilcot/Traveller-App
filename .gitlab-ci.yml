@@ -24,3 +24,11 @@ test:
         - npm install
         - CI=true npm test
         - echo "Test successfully!"
+
+docker-build:
+    stage: docker-build
+    image: docker:latest
+    services:
+        - name: docker:19.03.8-dind
+    script:
+        - docker build -t loft-traveler .
