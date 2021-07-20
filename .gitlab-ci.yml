@@ -1,6 +1,7 @@
 stages:
     - build
     - test
+    - docker-build
 
 build:
     stage: build
