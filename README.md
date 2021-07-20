@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Loft-traveler is a Single Page Application which helps travellers to discover the world and learn more about their dream destinations!
+This Web site is based upon open-source Everbase GraphQL API (https://www.everbase.co/docs) and is built using TypeScript, React (CRA), MobX and Apollo Client.
 
-## Available Scripts
+## Prerequisite
 
-In the project directory, you can run:
+NPM (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-### `npm start`
+## Install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+    git clone https://gitlab.com/FredV/loft-traveller.git
+    cd loft-traveller
+    npm i
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Development launch
 
-### `npm test`
+Servers listens to port 3000 and offers hot reload (watch mode)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+    npm start
+```
 
-### `npm run build`
+## Tests
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Currently we use Jest (CRA built-in) to run Unit tests.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+    npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Production build
 
-### `npm run eject`
+To build project just run:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+    npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Docker
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The docker image is based on an official nginx alpine.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Build
 
-## Learn More
+There's no build args so it is very straightforward:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+docker build -t loft-traveller .
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Usage
+
+The nginx run over the http port by default:
+
+```
+docker run -ti --rm -p 8080:80 loft-traveler
+```
