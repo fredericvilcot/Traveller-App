@@ -29,7 +29,8 @@
     "exclude": ["node_modules"],
     "paths": {
         "adapters/*": ["src/adapters/*"],
-        "domain/*": ["src/domain/*"],
+        "core/*": ["src/core/*"],
+        "mobx/*":["src/mobx/*"],
         "generated/*": ["src/generated/*"],
         "superTypes": ["src/superTypes.ts"]
     }
