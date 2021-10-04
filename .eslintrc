@@ -1,7 +1,8 @@
 {
     "extends": "@ubleam",
     "rules": {
-        "@typescript-eslint/member-ordering": 2
+        "@typescript-eslint/member-ordering": 2,
+        "@typescript-eslint/typedef": ["error", { "objectDestructuring": false }]
     },
     "ignorePatterns": "*.spec.ts"
 }
