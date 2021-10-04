@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 import { StoreContext } from 'adapters/primary/contexts/index'
 import { HomeView } from 'adapters/primary/views/home/homeView'
-import stores from 'domain/stores/index'
+import stores from 'mobx/stores/index'
 
 import './main.scss'
 

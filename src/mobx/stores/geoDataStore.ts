@@ -1,10 +1,10 @@
 import { makeObservable, observable, runInAction } from 'mobx'
 
-import type { TCountry } from 'domain/models/country/countryModel'
-import type { TLocation } from 'domain/models/main'
-import type { TCity } from 'domain/models/city/cityModel'
-import type ICityPort from 'domain/ports/city/cityPort'
-import type ICountryPort from 'domain/ports/country/countryPort'
+import type { TCountry } from 'core/domain/models/country/countryModel'
+import type { TLocation } from 'core/domain/models/main'
+import type { TCity } from 'core/domain/models/city/cityModel'
+import type ICityPort from 'core/domain/ports/city/cityPort'
+import type ICountryPort from 'core/domain/ports/country/countryPort'
 import type { DeepReadonly } from 'superTypes'
 
 export class GeoDataStore {
