@@ -1,6 +1,6 @@
-import InMemoryCityGateway from 'adapters/secondary/city/InMemoryCityGateway'
-import InMemoryCountryGateway from 'adapters/secondary/country/InMemoryCountryGateway'
-import { GeoDataStore } from 'domain/stores/geoDataStore'
+import InMemoryCityGateway from 'adapters/secondary/API/graphql/city/InMemoryCityGateway'
+import InMemoryCountryGateway from 'adapters/secondary/API/graphql/country/InMemoryCountryGateway'
+import { GeoDataStore } from 'mobx/stores/geoDataStore'
 import { mockCities } from './mockCities'
 import { mockCountries } from './mockCountries'
 

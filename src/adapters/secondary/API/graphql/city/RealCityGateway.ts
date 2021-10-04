@@ -3,16 +3,16 @@ import { loader } from 'graphql.macro'
 import { action, makeObservable, observable } from 'mobx'
 
 import ApiGateway from 'adapters/secondary/ApiGateway'
-import type { IStatus } from 'domain/ports/city/cityPort'
-import type ICityPort from 'domain/ports/city/cityPort'
-import type { TCity } from 'domain/models/city/cityModel'
+import type { IStatus } from 'core/domain/ports/city/cityPort'
+import type ICityPort from 'core/domain/ports/city/cityPort'
+import type { TCity } from 'core/domain/models/city/cityModel'
 import type { DeepReadonly } from 'superTypes'
 import type {
     QCitiesQuery,
     QCitiesQueryVariables,
     CityWhere
 } from 'generated/queries/geoDataQueries'
-import type { TCountry } from 'domain/models/country/countryModel'
+import type { TCountry } from 'core/domain/models/country/countryModel'
 
 const CITIES_QUERY = loader('../geoDataQueries/cities.graphql')
 

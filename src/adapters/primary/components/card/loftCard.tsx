@@ -3,11 +3,11 @@ import { observer } from 'mobx-react'
 import React from 'react'
 
 import { useStores } from 'adapters/primary/hooks/index'
-import type { GeoDataStore } from 'domain/stores/geoDataStore'
+import type { GeoDataStore } from 'mobx/stores/geoDataStore'
 
 import './loftCard.scss'
 import type { DeepReadonly } from 'superTypes'
-import type { TCurrency, TLanguage } from 'domain/models/main'
+import type { TCurrency, TLanguage } from 'core/domain/models/main'
 
 type TLoftCardStore = {
     geoDataStore: GeoDataStore

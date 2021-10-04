@@ -1,7 +1,7 @@
-import type ICityPort from 'domain/ports/city/cityPort'
-import type { IStatus } from 'domain/ports/city/cityPort'
-import type { TCity } from 'domain/models/city/cityModel'
-import type { TCountry } from 'domain/models/country/countryModel'
+import type ICityPort from 'core/domain/ports/city/cityPort'
+import type { IStatus } from 'core/domain/ports/city/cityPort'
+import type { TCity } from 'core/domain/models/city/cityModel'
+import type { TCountry } from 'core/domain/models/country/countryModel'
 import type { DeepReadonly } from 'superTypes'
 
 type TCityFilter = Readonly<{

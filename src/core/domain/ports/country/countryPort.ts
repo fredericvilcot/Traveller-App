@@ -1,4 +1,4 @@
-import type { TCity } from 'domain/models/city/cityModel'
+import type { TCountry } from 'core/domain/models/country/countryModel'
 
 export interface IStatus {
     loading: boolean
@@ -6,8 +6,8 @@ export interface IStatus {
     error: boolean
 }
 
-export default interface ICityPort {
+export default interface ICountryPort {
     status: IStatus
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getCities(filter?: any): Promise<TCity[] | null>
+    getCountries(filter?: any): Promise<TCountry[] | null>
 }

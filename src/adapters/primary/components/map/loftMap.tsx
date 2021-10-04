@@ -6,8 +6,8 @@ import React, { useCallback, useEffect } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { useStores } from 'adapters/primary/hooks/index'
-import type { GeoDataStore } from 'domain/stores/geoDataStore'
-import type { TLocation } from 'domain/models/main'
+import type { GeoDataStore } from 'mobx/stores/geoDataStore'
+import type { TLocation } from 'core/domain/models/main'
 import type { DeepReadonly } from 'superTypes'
 
 import 'leaflet/dist/leaflet.css'

@@ -3,11 +3,11 @@ import { loader } from 'graphql.macro'
 import { action, makeObservable, observable } from 'mobx'
 
 import ApiGateway from 'adapters/secondary/ApiGateway'
-import type ICountryPort from 'domain/ports/country/countryPort'
-import type { IStatus } from 'domain/ports/country/countryPort'
-import type { TCurrency, TLanguage, TLocation } from 'domain/models/main'
-import type { TCity } from 'domain/models/city/cityModel'
-import type { TCountry } from 'domain/models/country/countryModel'
+import type ICountryPort from 'core/domain/ports/country/countryPort'
+import type { IStatus } from 'core/domain/ports/country/countryPort'
+import type { TCurrency, TLanguage, TLocation } from 'core/domain/models/main'
+import type { TCity } from 'core/domain/models/city/cityModel'
+import type { TCountry } from 'core/domain/models/country/countryModel'
 import type { DeepReadonly } from 'superTypes'
 import type {
     QCountriesQuery,
