@@ -1,9 +1,8 @@
 import { observer, useLocalStore } from 'mobx-react'
 import React, { useCallback } from 'react'
 
-import { useStores } from 'adapters/primary/hooks/index'
-import type { TCity } from 'domain/models/city/cityModel'
-import type { GeoDataStore } from 'domain/stores/geoDataStore'
+import { useCoreUseCases, useStores } from 'adapters/primary/hooks/index'
+import type { TCity } from 'core/domain/models/city/cityModel'
 import type { DeepReadonly } from 'superTypes'
 
 import Button from '@material-ui/core/Button'
@@ -18,10 +17,6 @@ import './geoDataSearch.scss'
 enum GeoDataType {
     COUNTRY = 'country',
     CITY = 'city'
-}
-
-type TGeoDataSearchStore = {
-    geoDataStore: GeoDataStore
 }
 
 type TLocalStore = {
@@ -66,7 +61,8 @@ const CustomTextfield = withStyles((theme: Theme) =>
 )(TextField)
 
 export const GeoDataSearch: React.FC = observer(() => {
-    const { geoDataStore }: TGeoDataSearchStore = useStores()
+    const { geoDataStore } = useStores()
+    const { retrieveCitiesUseCase } = useCoreUseCases()
     const localState = useLocalStore(
         (): TLocalStore => ({
             inputValue: '',
@@ -101,9 +97,9 @@ export const GeoDataSearch: React.FC = observer(() => {
             const filter = { where: { name: { eq: localState.inputValue } } }
             localState.selectValue === GeoDataType.COUNTRY
                 ? geoDataStore.retrieveCountries(filter)
-                : geoDataStore.retrieveCities(filter)
+                : retrieveCitiesUseCase.retrieveCities(filter)
         }
-    }, [geoDataStore, localState])
+    }, [geoDataStore, localState.inputValue, localState.selectValue, retrieveCitiesUseCase])
 
     const handleCityElementClick = useCallback(
         (id: string) => (): void => {
