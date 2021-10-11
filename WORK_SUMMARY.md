@@ -61,5 +61,4 @@ Here are the main axes of improvement :
 
 ## Limitations
 
--   Time! (I have a lot of work with my current job and 2 children to entertain on weekends :-))
 -   Very poor API's (few data exposed, no explicit schema, weak scalars, etc...)
