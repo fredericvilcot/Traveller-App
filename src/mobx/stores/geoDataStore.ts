@@ -95,7 +95,7 @@ export class GeoDataStore {
 
     public retrieveCities = async (filter?: unknown): Promise<void> => {
         this.resetGeoData()
-        const cities = await this.cityGateway.getCities(filter)
+        const cities = await this.cityGateway.retrieveCities(filter)
         runInAction(() => {
             this.allCities = cities
             if (this.allCities?.length === 1) {

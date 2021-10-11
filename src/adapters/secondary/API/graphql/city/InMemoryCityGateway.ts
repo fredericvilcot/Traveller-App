@@ -48,7 +48,7 @@ export default class InMemoryCityGateway implements ICityPort {
     public status: IStatus = { loading: false, success: false, error: false }
     private cities: DeepReadonly<TCityPayload[]> = []
 
-    public getCities = async (filter?: TCityFilter): Promise<TCity[]> =>
+    public retrieveCities = async (filter?: TCityFilter): Promise<TCity[]> =>
         this.mapCities(this.findCitiesByName(filter))
 
     public addCities = (cities: DeepReadonly<TCityPayload[]>): void => {

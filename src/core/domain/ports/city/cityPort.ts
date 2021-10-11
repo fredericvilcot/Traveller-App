@@ -9,5 +9,5 @@ export interface IStatus {
 export default interface ICityPort {
     status: IStatus
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getCities(filter?: any): Promise<TCity[] | null>
+    retrieveCities(filter?: any): Promise<TCity[] | null>
 }

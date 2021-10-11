@@ -42,7 +42,7 @@ export default class RealCityGateway extends ApiGateway implements ICityPort {
         this.status.error = error
     }
 
-    public getCities = async (filter?: TCityFilter): Promise<TCity[] | null> => {
+    public retrieveCities = async (filter?: TCityFilter): Promise<TCity[] | null> => {
         this.setLoading(true)
         return this.client()
             .query<QCitiesQuery, QCitiesQueryVariables>({

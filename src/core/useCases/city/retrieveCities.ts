@@ -12,7 +12,7 @@ export class RetrieveCities {
     }
 
     public retrieveCities = async (filter?: unknown): Promise<void> => {
-        const cities = await this.cityGateway.getCities(filter)
+        const cities = await this.cityGateway.retrieveCities(filter)
         if (cities) {
             this.cityDataStore.retrieveCities(cities)
         }
