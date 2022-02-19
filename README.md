@@ -1,6 +1,6 @@
 ## Overview
 
-Traveller-App is a Single Page Application which helps travellers to discover the world and learn more about their dream destinations!  
+Traveler-App is a Single Page Application which helps travellers to discover the world and learn more about their dream destinations!  
 This Web site is based upon open-source Everbase GraphQL API (https://www.everbase.co/docs) and is built using TypeScript, React (CRA), MobX and Apollo Client.  
 The aim here is to build a front-end app based upon hexagonal architecture, with MobX as state manager.
 
